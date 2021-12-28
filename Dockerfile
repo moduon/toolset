@@ -36,7 +36,7 @@ COPY --from=toolset-builder /opt/toolset /opt/toolset
 
 RUN \
 apt-get update && \
-apt-get install -y --no-install-recommends curl git gnupg docker.io && \
+apt-get install -y --no-install-recommends curl git gnupg docker.io openssh-client && \
 # podman is missing from debian 10 but will be included in 11, so for the
 # moment we install it from kubic repors.
 # workaround for https://github.com/containers/podman/issues/8665
@@ -53,6 +53,7 @@ python3 -m pip check && \
 yamllint --version && \
 which docker && \
 podman --version && \
+ssh --version && \
 git --version
 
 # Use a more convenient default command than the Python base image
